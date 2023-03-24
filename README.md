@@ -14,6 +14,8 @@ git clone https://github.com/amasin76/flipper.git slots_machine
 cd slots_machine
 gcc slot-machine.c -o slot-machine.exe
 ```
+
 ### 📋 TODO
-- Add economy system 💰
+
+- ~~Add economy system~~ 💰 (done)
 - Add `work` command to add balance w/ some jokes 😋
