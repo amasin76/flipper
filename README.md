@@ -17,5 +17,6 @@ gcc slot-machine.c -o slot-machine.exe
 
 ### 📋 TODO
 
-- ~~Add economy system~~ 💰 (done)
+- ~~Add economy system~~ 💳 (done)
 - Add `work` command to add balance w/ some jokes 😋
+- Let user customize `bet` 💰
