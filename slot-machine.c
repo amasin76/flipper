@@ -4,46 +4,48 @@
 #include <ctype.h>
 
 void slots();
+int wallet(int *credit, int *bet);
+int game_over(int credit, char keep_play);
 
 // Global Variables
 int credit;
 int prize;
+int bet;
+int is_game_over;
 
 int main(void)
 {
-	// Cash Prize
-	prize = 50;
+	// TODO: let user customize bet
+	bet = 10;
+	// TODO: prize = custom bet * 10
+	prize = 100;
 	// start game w/ initial credit
-	credit = 30;
+	credit = 100;
 	// Ask user if still wanna play
 	char keep_play = ' ';
-	// over if credit = 0 OR user type 'n'
-	int is_game_over = 0;
 
 	do
 	{
 		slots();
-		credit -= 10;
-
-		if (credit <= 0)
-			return (
-				puts("Mab9a 3dk 7ta ryal, ma3ndk 7ta bx txd taxi"));
-
-		printf("fjibk : %d  tzid tmizi : 10dh (y/n)?\n", credit);
-		scanf("%c", &keep_play);
-		scanf("%*c"); // clear \n from input buffer
-
-		is_game_over = credit <= 0 || tolower(keep_play != 'y');
+		wallet(&credit, &bet);
+		is_game_over = game_over(credit, keep_play);
 
 	} while (!is_game_over);
 
 	return (0);
 }
 
-// int wallet(int credit)
-// {
-// 	return credit;
-// }
+int wallet(int *credit, int *bet)
+{
+	*credit -= *bet;
+
+	if (*credit <= 0)
+		return (
+			puts("0dh, Mab9a 7ta bx txd taxi"));
+
+	printf("fjibk : %d  tzid tmizi : 10dh (y/n)?\n", *credit);
+	return *credit;
+}
 
 void slots()
 {
@@ -61,7 +63,7 @@ void slots()
 
 	if (a == b && b == c)
 	{
-		credit += 50;
+		credit += prize;
 		printf("\U0001F389 ~WIN~ = +%d dh \U0001F389\n", prize);
 	}
 	else
@@ -69,4 +71,15 @@ void slots()
 
 	printf("--> %s %s %s <--\n", fruits[a], fruits[b], fruits[c]);
 	printf("───────────────────────────────────\n");
+}
+
+int game_over(int credit, char keep_play)
+{
+	credit;
+	scanf("%c", &keep_play);
+	// clear \n from input buffer
+	scanf("%*c");
+
+	// gameover if no credit left, OR user type !'y'
+	return (credit <= 0 || tolower(keep_play != 'y'));
 }
